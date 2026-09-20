@@ -2,11 +2,17 @@ import express, { Application,
 Request, Response } from 'express';
 
 import {User} from './types';
+import { errorHandler } from './middleware/errorHandler';
+import currencyRoutes from './routes/currencyRoutes';
 
 const app: Application = express(); 
 const PORT = 3000;
 
 app.use(express.json());
+
+app.use('/api', currencyRoutes);
+
+app.use(errorHandler);
 
 const testUser: User = {
     user_id: 'abc-123',

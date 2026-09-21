@@ -3,7 +3,7 @@ export interface User {
     base_currency: string;
     favorites: string[];
     created_at: string;
-    update_at: string;
+    updated_at: string;
 } 
 
 export interface RatesResponse{

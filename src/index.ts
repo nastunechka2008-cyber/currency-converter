@@ -8,7 +8,9 @@ import { errorHandler } from './middleware/errorHandler';
 import currencyRoutes from './routes/currencyRoutes';
 
 import cookieParser from 'cookie-parser';
-import { authMiddlewer } from './middleware/auth';
+import { authMiddlewar } from './middleware/auth';
+
+import userRoutes from './routes/userRoutes';
 
 
 const app: Application = express(); 
@@ -16,9 +18,10 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(authMiddlewer);
+app.use(authMiddlewar);
 
 app.use('/api', currencyRoutes);
+app.use('/api', userRoutes);
 
 app.use(errorHandler);
 

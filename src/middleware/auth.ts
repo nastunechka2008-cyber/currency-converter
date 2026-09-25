@@ -3,7 +3,7 @@ import {v4 as uuidv4 } from 'uuid';
 import { createUser, getUserById } from '../repositories/userRepository';
 import { User } from '../types';
 
-export const authMiddlewer =  async(
+export const authMiddlewar =  async(
     req: Request,
     res: Response,
     next: NextFunction
@@ -50,4 +50,5 @@ export const authMiddlewer =  async(
         (req as any).user = user;
     }
     };
-next();}
+next();
+};

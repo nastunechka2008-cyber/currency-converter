@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
+import { getAllCurrencies } from "../services/currencyServiece";
 
 export const getCurrencies = (req:  Request, res: Response )=> { // принремаеи запрос и ответ 
-    const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD'];
-    res.json(currencies); // отправляем клиенту currencies
+    const currencies = getAllCurrencies();
+    res.json(currencies);
 };

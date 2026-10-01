@@ -12,6 +12,8 @@ import { authMiddlewar } from './middleware/auth';
 
 import userRoutes from './routes/userRoutes';
 
+import ratesRoutes from './routes/ratesRoutes'
+
 const app: Application = express(); 
 const PORT = 3000;
 
@@ -21,6 +23,7 @@ app.use(authMiddlewar);
 
 app.use('/api', currencyRoutes);
 app.use('/api', userRoutes);
+app.use('/api', ratesRoutes);
 
 app.use(errorHandler);
 

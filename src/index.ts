@@ -12,8 +12,6 @@ import { authMiddlewar } from './middleware/auth';
 
 import userRoutes from './routes/userRoutes';
 
-import { fetchRates } from './services/ratesServise';
-
 const app: Application = express(); 
 const PORT = 3000;
 
@@ -34,7 +32,3 @@ app.listen(PORT, () => {
      console.log(`Server is running on http://localhost:${PORT}`); 
 });
 
-fetchRates('USD', ['EUR', 'GBP'])
-    .then((data) => 
-console.log('Курсы: ', data))
-    .catch((error) => console.error('Ошибка: ', error.message));

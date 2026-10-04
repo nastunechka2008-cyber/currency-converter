@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { fetchRates } from "../services/ratesServise";
+import { memoryCache } from "../lib/memoryCache";
+
+const MEMORY_TTL_MS  = 5*60*1000;
 
 export const getRates = async (req: Request, res: Response) => {
     const user = (req as any).user;
@@ -27,9 +30,18 @@ export const getRates = async (req: Request, res: Response) => {
         return res.json({base: finalBase, rates: {} });
     }
 
+    const cacheKey  = `${user.user_id}:${finalBase}:${finalTargets.join(',')}`;
+    const cached = memoryCache.get(cacheKey)
 
-// получаем курсы
-const result = await fetchRates(finalBase, finalTargets);
-res.json(result);
+    if (cached){
+        console.log('из кэша в памяти');
+        return res.json(cached);
+    }
 
+    console.log('Из БД или API');
+    const result = await fetchRates(finalBase, finalTargets);
+
+    memoryCache.set(cacheKey, result, MEMORY_TTL_MS);
+
+    res.json(result)
 } 

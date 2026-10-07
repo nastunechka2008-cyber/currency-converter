@@ -1,3 +1,6 @@
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './swagger';
+
 import dotenv from 'dotenv'; // библиотека читающая .env
 dotenv.config(); // читаем файлтзч
 
@@ -19,6 +22,7 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(cookieParser());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(authMiddlewar);
 
 app.use('/api', currencyRoutes);

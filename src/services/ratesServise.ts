@@ -16,7 +16,7 @@ export const fetchRates = async (base: string, targets: string[]) => {
         }
 
         try {
-            const response = await axios.get(`https://open.er-api.com/v6/NONEXISRENT/${base}`);
+            const response = await axios.get(`https://open.er-api.com/v6/latest/${base}`);
             const allRates = response.data.rates;
 
             if (allRates[target]) {

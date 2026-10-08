@@ -1,24 +1,24 @@
-import { verify } from "node:crypto";
-import { title } from "node:process";
-import { describe } from "node:test";
-import swaggerJSDoc from "swagger-jsdoc";
+import swaggerJsdoc from 'swagger-jsdoc';
+import path from 'path';
 
-const  options = {
-    definition:{
-        openapi:'3.0.0',
-        info:{
-            title: 'Currency Converter API',
-            version: '1.0.0',
-            description: 'API для конверции валют'
-        },
-        servers: [
-            {
-                url: 'http://localhost:3000', 
-                description: 'Локальный сервер',
-            },
-        ],
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Currency Converter API',
+      version: '1.0.0',
+      description: 'API для конвертации валют',
     },
-    apis:['./src/routes/*.ts'],
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Локальный сервер',
+      },
+    ],
+  },
+  apis: ['./src/routes/*.yaml'],
 };
 
-export const swaggerSpec = swaggerJSDoc(options);
+export const swaggerSpec = swaggerJsdoc(options);
+
+console.log('swagger API paths: ', options.apis);

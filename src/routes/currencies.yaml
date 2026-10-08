@@ -1,0 +1,16 @@
+/api/currencies:
+   get:
+     summary: Получить список поддерживаемых валют
+     description: Возвращает массив кодов валют в формате ISO 4217.
+     tags:
+       - Currencies
+     responses:
+       '200':
+         description: Успешный ответ
+         content:
+           application/json:
+             schema:
+               type: array
+               items:
+                 type: string
+                 example: USD

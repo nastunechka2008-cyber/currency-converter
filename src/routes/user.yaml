@@ -1,0 +1,50 @@
+/api/user:
+  get:
+    summary: Получить настройки текущего пользователя
+    description: Возвращает настройки пользователя по куке user_id.
+    tags:
+      - User
+    responses:
+      '200':
+        description: Успешный ответ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: 550e8400-e29b-41d4-a716-446655440000
+                base_currency:
+                  type: string
+                  example: USD
+                favorites:
+                  type: array
+                  items:
+                    type: string
+                  example: [EUR, GBP]
+  post:
+    summary: Обновить настройки пользователя
+    description: Обновляет base_currency и favorites.
+    tags:
+      - User
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              base_currency:
+                type: string
+                example: EUR
+              favorites:
+                type: array
+                items:
+                  type: string
+                example: [USD, GBP]
+    responses:
+      '200':
+        description: Настройки обновлены
+      '400':
+        description: Ошибка валидации

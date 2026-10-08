@@ -1,0 +1,29 @@
+/api/rates:
+  get:
+    summary: Получить курсы валют
+    description: Возвращает курсы для указанной базовой валюты и целей.
+    parameters:
+      - in: query
+        name: base
+        schema:
+          type: string
+        description: Базовая валюта (например, USD).
+      - in: query
+        name: targets
+        schema:
+          type: string
+        description: Целевые валюты через запятую (например, EUR,GBP).
+    responses:
+      200:
+        description: Успешный ответ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                base:
+                  type: string
+                  example: USD
+                rates:
+                type: object
+                example: { "EUR": 0.88, "GBP": 0.75 }

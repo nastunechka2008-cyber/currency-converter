@@ -4,8 +4,7 @@ import { swaggerSpec } from './swagger';
 import dotenv from 'dotenv'; // библиотека читающая .env
 dotenv.config(); // читаем файлтзч
 
-import express, { Application, 
-Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 
 import { errorHandler } from './middleware/errorHandler';
 import currencyRoutes from './routes/currencyRoutes';
@@ -15,9 +14,9 @@ import { authMiddlewar } from './middleware/auth';
 
 import userRoutes from './routes/userRoutes';
 
-import ratesRoutes from './routes/ratesRoutes'
+import ratesRoutes from './routes/ratesRoutes';
 
-const app: Application = express(); 
+const app: Application = express();
 const PORT = 3000;
 
 app.use(express.json());
@@ -31,11 +30,9 @@ app.use('/api', ratesRoutes);
 
 app.use(errorHandler);
 
-app.get('/', (req: Request, res:
-Response) => { 
-    res.send('Hello from Currency Converter!');
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello from Currency Converter!');
 });
 app.listen(PORT, () => {
-     console.log(`Server is running on http://localhost:${PORT}`); 
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-

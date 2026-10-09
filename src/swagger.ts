@@ -1,5 +1,4 @@
 import swaggerJsdoc from 'swagger-jsdoc';
-import path from 'path';
 
 const options = {
   definition: {
@@ -20,5 +19,3 @@ const options = {
 };
 
 export const swaggerSpec = swaggerJsdoc(options);
-
-console.log('swagger API paths: ', options.apis);

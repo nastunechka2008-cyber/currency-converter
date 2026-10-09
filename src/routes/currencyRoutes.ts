@@ -1,4 +1,4 @@
-import { Router } from 'express'; 
+import { Router } from 'express';
 import { getCurrencies } from '../controllers/currencyController';
 
 const router = Router();

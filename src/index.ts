@@ -1,19 +1,13 @@
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './swagger';
-
 import dotenv from 'dotenv'; // библиотека читающая .env
-dotenv.config(); // читаем файлтзч
-
+dotenv.config(); // читаем файлы
 import express, { Application, Request, Response } from 'express';
-
 import { errorHandler } from './middleware/errorHandler';
 import currencyRoutes from './routes/currencyRoutes';
-
 import cookieParser from 'cookie-parser';
-import { authMiddlewar } from './middleware/auth';
-
+import { authMiddleware } from './middleware/auth';
 import userRoutes from './routes/userRoutes';
-
 import ratesRoutes from './routes/ratesRoutes';
 
 const app: Application = express();
@@ -22,7 +16,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use(authMiddlewar);
+app.use(authMiddleware);
 
 app.use('/api', currencyRoutes);
 app.use('/api', userRoutes);

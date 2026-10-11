@@ -1,13 +1,15 @@
-import { User } from '../types';
+import { v4 as uuidv4 } from 'uuid'; 
+import { User } from '../types'; 
 import { createUser, getUserById } from '../repositories/userRepository';
 
-export const findeOrCreateUser = async (
-  userId: string | null
-): Promise<User> => {
-  if (!userId) {
-    const { v4: uuidv4 } = require('uuid');
-    const newUserId = uuidv4();
+
+export const findOrCreateUser = async ( 
+userId: string | null ): 
+Promise<User> => { 
+  if (!userId) { 
+    const newUserId = uuidv4(); 
     const now = new Date().toISOString();
+
 
     const newUser: User = {
       user_id: newUserId,
@@ -26,7 +28,7 @@ export const findeOrCreateUser = async (
     return user;
   }
 
-  const now = new Date().toDateString();
+  const now = new Date().toISOString();
   const newUser: User = {
     user_id: userId,
     base_currency: 'USD',

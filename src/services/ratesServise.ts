@@ -29,7 +29,7 @@ export const fetchRates = async (base: string, targets: string[]) => {
         filtered[target] = allRates[target];
         await saveCachedRate(base, target, allRates[target]);
       }
-    } catch (error) {
+    } catch (_error) {
       throw new AppError('Сторонний API недоступен', 503);
     }
   }

@@ -1,7 +1,7 @@
+import dontev from 'dotenv';
+dontev.config();
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './swagger';
-import dotenv from 'dotenv'; // библиотека читающая .env
-dotenv.config(); // читаем файлы
 import express, { Application, Request, Response } from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import currencyRoutes from './routes/currencyRoutes';
@@ -22,11 +22,18 @@ app.use('/api', currencyRoutes);
 app.use('/api', userRoutes);
 app.use('/api', ratesRoutes);
 
-app.use(errorHandler);
-
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Currency Converter!');
 });
+
+app.use((_req, res) => {
+  res.status(404).json({
+    error: 'Маршрут не найден',
+  });
+});
+
+app.use(errorHandler);
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

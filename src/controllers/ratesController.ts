@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express';
 import { fetchRates } from '../services/ratesServise';
 import { memoryCache } from '../lib/memoryCache';
@@ -32,7 +31,7 @@ export const getRates = async (req: Request, res: Response) => {
   const finalBase =
     base !== undefined
       ? parsedBase
-      : parseCurrency(user.base_currency) ?? 'USD';
+      : (parseCurrency(user.base_currency) ?? 'USD');
 
   if (!finalBase) {
     throw new AppError('Некорректный код базовой валюты', 400);
@@ -58,9 +57,7 @@ export const getRates = async (req: Request, res: Response) => {
       throw new AppError('Некорректные коды валют в targets', 400);
     }
   } else if (user.favorites.length > 0) {
-    finalTargets = user.favorites.map((value) =>
-      value.trim().toUpperCase()
-    );
+    finalTargets = user.favorites.map((value) => value.trim().toUpperCase());
 
     if (!finalTargets.every(isValidCurrency)) {
       throw new AppError('Некорректные коды валют в избранном', 400);
@@ -78,8 +75,7 @@ export const getRates = async (req: Request, res: Response) => {
   }
 
   // Формируем ключ кэша
-  const cacheKey =
-    `${user.user_id}:${finalBase}:${finalTargets.join(',')}`;
+  const cacheKey = `${finalBase}:${[...finalTargets].sort().join(',')}`;
 
   const cached = memoryCache.get(cacheKey);
 

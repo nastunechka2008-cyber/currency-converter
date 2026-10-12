@@ -26,4 +26,4 @@
                   example: USD
                 rates:
                 type: object
-                example: { "EUR": 0.88, "GBP": 0.75 }
+                example: { 'EUR': 0.88, 'GBP': 0.75 }
